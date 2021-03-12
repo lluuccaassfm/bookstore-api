@@ -12,7 +12,7 @@ public class Categoria implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
 
   private String nome;
 
@@ -24,17 +24,17 @@ public class Categoria implements Serializable {
   public Categoria() {
   }
 
-  public Categoria(int id, String nome, String descricao) {
+  public Categoria(Long id, String nome, String descricao) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
   }
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -69,11 +69,11 @@ public class Categoria implements Serializable {
 
     Categoria categoria = (Categoria) o;
 
-    return getId() == categoria.getId();
+    return getId().equals(categoria.getId());
   }
 
   @Override
   public int hashCode() {
-    return getId();
+    return getId().hashCode();
   }
 }

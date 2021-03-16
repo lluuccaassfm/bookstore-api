@@ -1,5 +1,7 @@
 package com.lucas.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ public class Livro implements Serializable {
 
   private String texto;
 
+  @JsonIgnore
   @ManyToOne
   @JoinColumn
   private Categoria categoria;

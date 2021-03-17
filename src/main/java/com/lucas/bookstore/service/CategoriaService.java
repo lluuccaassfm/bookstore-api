@@ -1,5 +1,6 @@
 package com.lucas.bookstore.service;
 
+import com.lucas.bookstore.exceptions.ObjectNotFoundException;
 import com.lucas.bookstore.domain.Categoria;
 import com.lucas.bookstore.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,6 @@ public class CategoriaService {
 
   public Categoria findById(Long id) {
     Optional<Categoria> obj = categoriaRepository.findById(id);
-    return obj.orElse(null);
+    return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: "+ Categoria.class.getName()));
   }
 }

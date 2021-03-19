@@ -5,6 +5,7 @@ import com.lucas.bookstore.exceptions.ObjectNotFoundException;
 import com.lucas.bookstore.domain.Categoria;
 import com.lucas.bookstore.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +36,14 @@ public class CategoriaService {
     categoria.setNome(categoriaDTO.getNome());
     categoria.setDescricao(categoriaDTO.getDescricao());
     return categoriaRepository.save(categoria);
+  }
+
+  public void delete(Long id) {
+    findById(id);
+    try {
+      categoriaRepository.deleteById(id);
+    }catch (DataIntegrityViolationException e){
+      throw new com.lucas.bookstore.exceptions.DataIntegrityViolationException("Categoria não pode ser deletada! Possui livros associados");
+    }
   }
 }

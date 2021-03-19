@@ -29,4 +29,11 @@ public class CategoriaService {
     categoria.setId(null);
     return categoriaRepository.save(categoria);
   }
+
+  public Categoria update(Long id, CategoriaDTO categoriaDTO) {
+    Categoria categoria = findById(id);
+    categoria.setNome(categoriaDTO.getNome());
+    categoria.setDescricao(categoriaDTO.getDescricao());
+    return categoriaRepository.save(categoria);
+  }
 }

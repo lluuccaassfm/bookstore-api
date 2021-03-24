@@ -16,6 +16,9 @@ public class LivroService {
   @Autowired
   private LivroRepository livroRepository;
 
+  @Autowired
+  private CategoriaService categoriaService;
+
   public Livro findById(Long id) {
     Optional<Livro> obj = livroRepository.findById(id);
     return obj.orElseThrow(() -> new ObjectNotFoundException("Livro não encontrado! Id: " + id + ", Tipo: "+ Livro.class.getName()));
@@ -23,5 +26,10 @@ public class LivroService {
 
   public List<Livro> findAll() {
     return livroRepository.findAll();
+  }
+
+  public List<Livro> findAllCategoria(Long idCat) {
+    categoriaService.findById(idCat);
+    return livroRepository.findAllByCategoria(idCat);
   }
 }

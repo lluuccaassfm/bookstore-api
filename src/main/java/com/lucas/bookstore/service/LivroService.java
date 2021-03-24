@@ -24,12 +24,11 @@ public class LivroService {
     return obj.orElseThrow(() -> new ObjectNotFoundException("Livro não encontrado! Id: " + id + ", Tipo: "+ Livro.class.getName()));
   }
 
-  public List<Livro> findAll() {
-    return livroRepository.findAll();
-  }
-
-  public List<Livro> findAllCategoria(Long idCat) {
-    categoriaService.findById(idCat);
-    return livroRepository.findAllByCategoria(idCat);
+  public List<Livro> findAll(Long idCategoria) {
+    if(idCategoria == 0){
+      return livroRepository.findAll();
+    }
+    categoriaService.findById(idCategoria);
+    return livroRepository.findAllByCategoria(idCategoria);
   }
 }

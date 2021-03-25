@@ -3,16 +3,17 @@ package com.lucas.bookstore.resource;
 import com.lucas.bookstore.domain.Categoria;
 import com.lucas.bookstore.dtos.CategoriaDTO;
 import com.lucas.bookstore.service.CategoriaService;
-import com.sun.source.util.TaskListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
@@ -35,14 +36,14 @@ public class CategoriaResource {
   }
 
   @PostMapping
-  public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+  public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria categoria) {
     categoria = categoriaService.create(categoria);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
     return ResponseEntity.created(uri).build();
   }
 
   @PutMapping(value = "/{id}")
-  public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
+  public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @Valid @RequestBody CategoriaDTO categoriaDTO) {
     Categoria newCategoria = categoriaService.update(id, categoriaDTO);
     return ResponseEntity.ok().body(new CategoriaDTO(newCategoria));
   }

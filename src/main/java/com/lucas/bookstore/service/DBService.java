@@ -26,12 +26,9 @@ public class DBService {
     Livro l2 = new Livro(null, "JAVA", "Oracle", "Lorem Ipsum", cat1);
     Livro l3 = new Livro(null, "Estudo da mente", "Lucas F.", "Lorem Ipsum", cat2);
     Livro l4 = new Livro(null, "O corpo fala", "Fulano S.", "Lorem Ipsum", cat2);
-    Livro l5 = new Livro(null, "Matemática", "Tia Fernando", "Lorem Ipsum", cat3);
-    Livro l6 = new Livro(null, "Português", "Fáfá", "Lorem Ipsum", cat3);
 
     cat1.getLivros().addAll(Arrays.asList(l1, l2));
     cat2.getLivros().addAll(Arrays.asList(l3, l4));
-    cat3.getLivros().addAll(Arrays.asList(l5, l6));
 
     this.categoriaRepository.saveAll(Arrays.asList(cat1));
     this.categoriaRepository.saveAll(Arrays.asList(cat2));
@@ -41,7 +38,5 @@ public class DBService {
     this.livroRepository.saveAll(Arrays.asList(l2));
     this.livroRepository.saveAll(Arrays.asList(l3));
     this.livroRepository.saveAll(Arrays.asList(l4));
-    this.livroRepository.saveAll(Arrays.asList(l5));
-    this.livroRepository.saveAll(Arrays.asList(l6));
   }
 }

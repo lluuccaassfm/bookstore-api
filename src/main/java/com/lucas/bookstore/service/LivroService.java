@@ -49,4 +49,11 @@ public class LivroService {
       newLivro.setTexto(livro.getTexto());
     }
   }
+
+  public Livro create(Long idCategoria, Livro livro) {
+    livro.setId(null);
+    Categoria categoria = categoriaService.findById(idCategoria);
+    livro.setCategoria(categoria);
+    return livroRepository.save(livro);
+  }
 }

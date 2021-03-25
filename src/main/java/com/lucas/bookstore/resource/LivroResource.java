@@ -54,4 +54,10 @@ public class LivroResource {
     URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newLivro.getId()).toUri();
     return ResponseEntity.created(uri).build();
   }
+
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id) {
+    livroService.delete(id);
+    return ResponseEntity.noContent().build();
+  }
 }

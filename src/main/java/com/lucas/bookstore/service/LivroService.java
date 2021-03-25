@@ -56,4 +56,9 @@ public class LivroService {
     livro.setCategoria(categoria);
     return livroRepository.save(livro);
   }
+
+  public void delete(Long id) {
+    Livro livro = findById(id);
+    livroRepository.delete(livro);
+  }
 }

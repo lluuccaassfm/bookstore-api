@@ -23,18 +23,10 @@ public class LivroResource {
     return ResponseEntity.ok().body(livro);
   }
 
-//  @GetMapping
-//  public ResponseEntity<List<LivroDTO>> findAll(){
-//    List<Livro> livros = livroService.findAll();
-//    List<LivroDTO> livrosDTO = livros.stream()
-//            .map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
-//    return ResponseEntity.ok().body(livrosDTO);
-//  }
-
   //localhost:8080/livros?categoria=1
   @GetMapping
-  public ResponseEntity<List<LivroDTO>> findAllCategoria(@RequestParam(value = "categoria", defaultValue = "0") Long idCat) {
-    List<Livro> livros = livroService.findAllCategoria(idCat);
+  public ResponseEntity<List<LivroDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long idCat) {
+    List<Livro> livros = livroService.findAll(idCat);
     List<LivroDTO> livrosDTO = livros.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
     return ResponseEntity.ok().body(livrosDTO);
   }
